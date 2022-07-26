@@ -12,7 +12,15 @@ public class DepartmentRepository {
     }
 
     public void saveDepartment(Department department) {
-        departments.add(department);
+        Department existingDep = findDepartment(department.getId());
+
+        if (existingDep == null) {
+            departments.add(department);
+        } else {
+            Integer idx = departments.indexOf(existingDep);
+            departments.set(idx, new Department(department.getId(), department.getName()));
+        }
+
     }
 
     public Department findDepartment(String id) {
@@ -35,4 +43,5 @@ public class DepartmentRepository {
         }
         return super.toString();
     }
+
 }

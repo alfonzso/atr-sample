@@ -39,7 +39,7 @@ public class parseXML {
                     Node depart = departmentList.item(j);
                     String id = ((Element) depart).getElementsByTagName("id").item(0).getTextContent();
                     String name = ((Element) depart).getElementsByTagName("name").item(0).getTextContent();
-
+                    
                     this.oDepRepo.saveDepartment(new Department(id, name));
                 }
             }
