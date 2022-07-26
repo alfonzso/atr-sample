@@ -8,7 +8,9 @@ public class Patient {
     private String username;
     private Institute institute;
     private Department department;
-    
+
+    public Patient() {
+    }
 
     public Patient(String id, String name, String email, String username, Institute institute, Department department) {
         this.id = id;
@@ -66,9 +68,5 @@ public class Patient {
     public void setDepartment(Department department) {
         this.department = department;
     }
-
-
-
-
 
 }
