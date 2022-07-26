@@ -29,11 +29,15 @@ public class Institute {
         this.departments.add(department);
     }
 
-    public Institute getInstance() {
-        return this;
-    }
-
     public String getId() {
         return id;
+    }
+
+    public ArrayList<Department> getDepartments() {
+        return departments;
+    }
+
+    public String getName() {
+        return name;
     }
 }

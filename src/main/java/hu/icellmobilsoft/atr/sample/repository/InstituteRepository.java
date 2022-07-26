@@ -8,7 +8,15 @@ public class InstituteRepository {
     ArrayList<Institute> institutes = new ArrayList<Institute>();
 
     public void saveInstitute(Institute institute) {
-        institutes.add(institute);
+        Institute existingInstitute = findInstitute(institute.getId());
+
+        if (existingInstitute == null) {
+            institutes.add(institute);
+        } else {
+            Integer idx = institutes.indexOf(existingInstitute);
+            institutes.set(idx, new Institute(institute.getId(), institute.getName(), institute.getDepartments()));
+        }
+
     }
 
     public Institute findInstitute(String id) {

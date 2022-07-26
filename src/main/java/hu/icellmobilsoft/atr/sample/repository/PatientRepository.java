@@ -9,7 +9,20 @@ public class PatientRepository {
     ArrayList<Patient> patients = new ArrayList<Patient>();
 
     public void savePatient(Patient patient) {
-        patients.add(patient);
+        Patient existPatient = findPatient(patient.getId());
+
+        if (existPatient == null) {
+            patients.add(patient);
+        } else {
+            Integer idx = patients.indexOf(existPatient);
+            patients.set(idx, new Patient(
+                    patient.getId(),
+                    patient.getName(),
+                    patient.getEmail(),
+                    patient.getUsername(),
+                    patient.getInstitute(),
+                    patient.getDepartment()));
+        }
     }
 
     public ArrayList<Patient> getAllPatient() {
