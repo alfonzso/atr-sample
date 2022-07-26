@@ -20,5 +20,8 @@ public class InstituteRepository {
         return null;
     }
 
-    // findInstitute(String id)
+    public ArrayList<Institute> getAllInstitute() {
+        return institutes;
+    }
+
 }

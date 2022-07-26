@@ -24,7 +24,8 @@ public class DepartmentRepository {
         return null;
     }
 
-    public ArrayList<Department> getDepartmenList() {
+    public ArrayList<Department> getAllDepartment() {
         return departments;
     }
+
 }
