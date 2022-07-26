@@ -28,4 +28,11 @@ public class DepartmentRepository {
         return departments;
     }
 
+    @Override
+    public String toString() {
+        for (int i = 0; i < departments.size(); i++) {
+            System.out.println(departments.get(i).getId() + "--> " + departments.get(i).getName());
+        }
+        return super.toString();
+    }
 }
