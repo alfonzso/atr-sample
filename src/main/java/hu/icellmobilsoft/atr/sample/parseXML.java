@@ -16,17 +16,19 @@ import org.xml.sax.SAXException;
 import hu.icellmobilsoft.atr.sample.model.Department;
 import hu.icellmobilsoft.atr.sample.repository.DepartmentRepository;
 
-public class parseXML {
+public class parseXml {
     private DepartmentRepository oDepRepo;
 
-    public parseXML() {
+    public parseXml() {
         System.out.println("In simplePrintOut constructor");
         this.oDepRepo = new DepartmentRepository();
-        parse();
+        parse("sample.xml");
         oDepRepo.toString();
     }
 
-
+    public DepartmentRepository getoDepRepo() {
+        return oDepRepo;
+    }
 
     public void getDepartments(NodeList nodeList) {
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -39,7 +41,7 @@ public class parseXML {
                     Node depart = departmentList.item(j);
                     String id = ((Element) depart).getElementsByTagName("id").item(0).getTextContent();
                     String name = ((Element) depart).getElementsByTagName("name").item(0).getTextContent();
-                    
+
                     this.oDepRepo.saveDepartment(new Department(id, name));
                 }
             }
@@ -47,8 +49,8 @@ public class parseXML {
 
     }
 
-    public void parse() {
-        InputStream in = this.getClass().getClassLoader().getResourceAsStream("sample.xml");
+    public void parse(String xmlFileName) {
+        InputStream in = this.getClass().getClassLoader().getResourceAsStream(xmlFileName);
         DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder;
 

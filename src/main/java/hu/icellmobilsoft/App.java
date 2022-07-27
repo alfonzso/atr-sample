@@ -1,6 +1,6 @@
 package hu.icellmobilsoft;
 
-import hu.icellmobilsoft.atr.sample.parseXML;
+import hu.icellmobilsoft.atr.sample.parseXml;
 
 /**
  * Hello world!
@@ -8,7 +8,7 @@ import hu.icellmobilsoft.atr.sample.parseXML;
  */
 public class App {
     public static void main(String[] args) {
-        parseXML osp = new parseXML();
+        parseXml osp = new parseXml();
         // System.out.println( "Hello World!" );
     }
 }
