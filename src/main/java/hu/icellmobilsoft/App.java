@@ -9,8 +9,7 @@ import hu.icellmobilsoft.atr.sample.action.SamplePatientAction;
  */
 public class App {
     public static void main(String[] args) {
-        // parseXml opx = new parseXml();
-        // System.out.println( "Hello World!" );
+        parseXml opx = new parseXml();
         SamplePatientAction osp = new SamplePatientAction();
         osp.loadFromJson("example.json");
     }
