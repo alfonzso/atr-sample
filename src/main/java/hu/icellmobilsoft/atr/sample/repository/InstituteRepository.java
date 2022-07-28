@@ -32,4 +32,14 @@ public class InstituteRepository {
         return institutes;
     }
 
+    @Override
+    public String toString() {
+        for (int i = 0; i < institutes.size(); i++) {
+            System.out.println(institutes.get(i).getId());
+            System.out.println(institutes.get(i).getName());
+            institutes.get(i).getDepartments().toString();
+        }
+        return super.toString();
+    }
+
 }

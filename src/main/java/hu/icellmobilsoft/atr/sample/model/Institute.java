@@ -2,16 +2,19 @@ package hu.icellmobilsoft.atr.sample.model;
 
 import java.util.ArrayList;
 
+import hu.icellmobilsoft.atr.sample.repository.DepartmentRepository;
+
 public class Institute {
 
     private String id;
     private String name;
-    private ArrayList<Department> departments = new ArrayList<Department>();
+    DepartmentRepository departments = new DepartmentRepository();
 
     public Institute() {
     }
 
-    public Institute(String id, String name, ArrayList<Department> dep) {
+    // public Institute(String id, String name, ArrayList<Department> dep) {
+    public Institute(String id, String name, DepartmentRepository dep) {
         this.id = id.trim();
         this.name = name.trim();
         this.departments = dep;
@@ -26,14 +29,14 @@ public class Institute {
     }
 
     public void addDepartments(Department department) {
-        this.departments.add(department);
+        this.departments.saveDepartment(department);
     }
 
     public String getId() {
         return id;
     }
 
-    public ArrayList<Department> getDepartments() {
+    public DepartmentRepository getDepartments() {
         return departments;
     }
 

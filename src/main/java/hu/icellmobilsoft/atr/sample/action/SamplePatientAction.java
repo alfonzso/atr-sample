@@ -29,9 +29,9 @@ public class SamplePatientAction {
         parseXml oParseXml = new parseXml();
         oParseXml.parse(xml);
 
-        depRep = oParseXml.getoDepRepo();
-        patRep = oParseXml.getoPatRepo();
-        instRep = oParseXml.getoInstRepo();
+        depRep = oParseXml.getDepRepo();
+        patRep = oParseXml.getPatRepo();
+        instRep = oParseXml.getInstRepo();
     }
 
     public ArrayList<Patient> getAllUsersData() {

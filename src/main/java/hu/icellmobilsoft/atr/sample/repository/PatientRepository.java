@@ -38,4 +38,22 @@ public class PatientRepository {
         return null;
     }
 
+    @Override
+    public String toString() {
+        for (int i = 0; i < patients.size(); i++) {
+            System.out.println(patients.get(i).getId());
+            System.out.println(patients.get(i).getName());
+            System.out.println(patients.get(i).getUsername());
+            System.out.println(patients.get(i).getEmail());
+            System.out.println(
+                patients.get(i).getDepartment().getName().toString()
+            );
+            System.out.println(
+                patients.get(i).getInstitute().getName().toString()
+            );
+
+        }
+        return super.toString();
+    }
+
 }

@@ -21,29 +21,28 @@ import hu.icellmobilsoft.atr.sample.repository.InstituteRepository;
 import hu.icellmobilsoft.atr.sample.repository.PatientRepository;
 
 public class parseXml {
-    private DepartmentRepository oDepRepo;
-    private PatientRepository oPatRepo;
-    private InstituteRepository oInstRepo;
+    private DepartmentRepository depRepo;
+    private PatientRepository patRepo;
+    private InstituteRepository instRepo;
 
-    public PatientRepository getoPatRepo() {
-        return oPatRepo;
+    public PatientRepository getPatRepo() {
+        return patRepo;
     }
 
-    public InstituteRepository getoInstRepo() {
-        return oInstRepo;
+    public InstituteRepository getInstRepo() {
+        return instRepo;
     }
 
-    public DepartmentRepository getoDepRepo() {
-        return oDepRepo;
+    public DepartmentRepository getDepRepo() {
+        return depRepo;
     }
 
     public parseXml() {
         System.out.println("In simplePrintOut constructor");
-        this.oDepRepo = new DepartmentRepository();
-        this.oPatRepo = new PatientRepository();
-        this.oInstRepo = new InstituteRepository();
+        this.depRepo = new DepartmentRepository();
+        this.patRepo = new PatientRepository();
+        this.instRepo = new InstituteRepository();
         parse("sample.xml");
-        oDepRepo.toString();
     }
 
     public void getDepartments(NodeList nodeList) {
@@ -58,7 +57,7 @@ public class parseXml {
                     String id = ((Element) depart).getElementsByTagName("id").item(0).getTextContent();
                     String name = ((Element) depart).getElementsByTagName("name").item(0).getTextContent();
 
-                    this.oDepRepo.saveDepartment(new Department(id, name));
+                    this.depRepo.saveDepartment(new Department(id, name));
                 }
             }
         }
@@ -94,10 +93,10 @@ public class parseXml {
                     tempPatient.setName(getData(names));
                     tempPatient.setEmail(getData(emails));
                     tempPatient.setUsername(getData(usernames));
-                    tempPatient.setDepartment(oDepRepo.findDepartment(getData(departments)));
-                    tempPatient.setInstitute(oInstRepo.findInstitute(getData(institutes)));
+                    tempPatient.setDepartment(depRepo.findDepartment(getData(departments)));
+                    tempPatient.setInstitute(instRepo.findInstitute(getData(institutes)));
 
-                    oPatRepo.savePatient(tempPatient);
+                    patRepo.savePatient(tempPatient);
                 }
             }
         }
@@ -126,9 +125,9 @@ public class parseXml {
                     }
                     for (int k = 0; k < department.getLength(); k++) {
                         String idValue = department.item(k).getTextContent();
-                        tempInst.addDepartments(new Department(idValue, oDepRepo.findDepartment(idValue).getName()));
+                        tempInst.addDepartments(new Department(idValue, depRepo.findDepartment(idValue).getName()));
                     }
-                    oInstRepo.saveInstitute(tempInst);
+                    instRepo.saveInstitute(tempInst);
                 }
             }
         }
