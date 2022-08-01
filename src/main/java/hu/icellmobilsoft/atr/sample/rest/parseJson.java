@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
@@ -24,19 +23,6 @@ public class parseJson {
     private PatientRepository patRepo;
     private InstituteRepository instRepo;
 
-    // public void loadFromXml(String xml) {
-    //     parseXml oParseXml = new parseXml();
-    //     oParseXml.parse(xml);
-
-    //     depRep = oParseXml.getDepRepo();
-    //     patRep = oParseXml.getPatRepo();
-    //     instRep = oParseXml.getInstRepo();
-    // }
-
-    // public ArrayList<Patient> getAllUsersData() {
-    //     return patRep.getAllPatient();
-    // }
-
     public PatientRepository getPatRepo() {
         return patRepo;
     }
@@ -53,18 +39,8 @@ public class parseJson {
         this.depRepo = new DepartmentRepository();
         this.patRepo = new PatientRepository();
         this.instRepo = new InstituteRepository();
-        // parse("example.json");
     }
 
-    // public Patient getPatientData(String id) {
-    //     ArrayList<Patient> patientData = patRepo.getAllPatient();
-    //     for (int i = 0; i < patientData.size(); i++) {
-    //         if (patientData.get(i).getId().equals(id)) {
-    //             return patientData.get(i);
-    //         }
-    //     }
-    //     return null;
-    // }
 
     public DepartmentRepository getDepartments(JSONObject jsonObject) {
         DepartmentRepository tempDepRep = new DepartmentRepository();
