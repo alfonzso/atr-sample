@@ -56,15 +56,15 @@ public class parseJson {
         // parse("example.json");
     }
 
-    public Patient getPatientData(String id) {
-        ArrayList<Patient> patientData = patRepo.getAllPatient();
-        for (int i = 0; i < patientData.size(); i++) {
-            if (patientData.get(i).getId().equals(id)) {
-                return patientData.get(i);
-            }
-        }
-        return null;
-    }
+    // public Patient getPatientData(String id) {
+    //     ArrayList<Patient> patientData = patRepo.getAllPatient();
+    //     for (int i = 0; i < patientData.size(); i++) {
+    //         if (patientData.get(i).getId().equals(id)) {
+    //             return patientData.get(i);
+    //         }
+    //     }
+    //     return null;
+    // }
 
     public DepartmentRepository getDepartments(JSONObject jsonObject) {
         DepartmentRepository tempDepRep = new DepartmentRepository();

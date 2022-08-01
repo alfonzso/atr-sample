@@ -9,7 +9,7 @@ import hu.icellmobilsoft.atr.sample.rest.parseXml;
  */
 public class App {
     public static void main(String[] args) {
-        parseXml opx = new parseXml();
+        // parseXml opx = new parseXml();
         // patientTest(opx);
         SamplePatientAction osp = new SamplePatientAction();
         osp.loadFromJson("example.json");
