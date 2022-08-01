@@ -1,4 +1,4 @@
-package hu.icellmobilsoft.atr.sample;
+package hu.icellmobilsoft.atr.sample.rest;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,11 +38,10 @@ public class parseXml {
     }
 
     public parseXml() {
-        System.out.println("In simplePrintOut constructor");
         this.depRepo = new DepartmentRepository();
         this.patRepo = new PatientRepository();
         this.instRepo = new InstituteRepository();
-        parse("sample.xml");
+        // parse("sample.xml");
     }
 
     public void getDepartments(NodeList nodeList) {

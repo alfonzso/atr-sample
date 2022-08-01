@@ -1,7 +1,7 @@
 package hu.icellmobilsoft;
 
-import hu.icellmobilsoft.atr.sample.parseXml;
 import hu.icellmobilsoft.atr.sample.action.SamplePatientAction;
+import hu.icellmobilsoft.atr.sample.rest.parseXml;
 
 /**
  * Hello world!

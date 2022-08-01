@@ -1,4 +1,4 @@
-package hu.icellmobilsoft.atr.sample.action;
+package hu.icellmobilsoft.atr.sample.rest;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -17,29 +17,47 @@ import hu.icellmobilsoft.atr.sample.model.Patient;
 import hu.icellmobilsoft.atr.sample.repository.DepartmentRepository;
 import hu.icellmobilsoft.atr.sample.repository.InstituteRepository;
 import hu.icellmobilsoft.atr.sample.repository.PatientRepository;
-import hu.icellmobilsoft.atr.sample.rest.parseXml;
 
-public class SamplePatientAction {
+public class parseJson {
 
-    private DepartmentRepository depRep;
-    private PatientRepository patRep;
-    private InstituteRepository instRep;
+    private DepartmentRepository depRepo;
+    private PatientRepository patRepo;
+    private InstituteRepository instRepo;
 
-    public void loadFromXml(String xml) {
-        parseXml oParseXml = new parseXml();
-        oParseXml.parse(xml);
+    // public void loadFromXml(String xml) {
+    //     parseXml oParseXml = new parseXml();
+    //     oParseXml.parse(xml);
 
-        depRep = oParseXml.getDepRepo();
-        patRep = oParseXml.getPatRepo();
-        instRep = oParseXml.getInstRepo();
+    //     depRep = oParseXml.getDepRepo();
+    //     patRep = oParseXml.getPatRepo();
+    //     instRep = oParseXml.getInstRepo();
+    // }
+
+    // public ArrayList<Patient> getAllUsersData() {
+    //     return patRep.getAllPatient();
+    // }
+
+    public PatientRepository getPatRepo() {
+        return patRepo;
     }
 
-    public ArrayList<Patient> getAllUsersData() {
-        return patRep.getAllPatient();
+    public InstituteRepository getInstRepo() {
+        return instRepo;
+    }
+
+    public DepartmentRepository getDepRepo() {
+        return depRepo;
+    }
+
+    public parseJson() {
+        this.depRepo = new DepartmentRepository();
+        this.patRepo = new PatientRepository();
+        this.instRepo = new InstituteRepository();
+        // parse("example.json");
     }
 
     public Patient getPatientData(String id) {
-        ArrayList<Patient> patientData = patRep.getAllPatient();
+        ArrayList<Patient> patientData = patRepo.getAllPatient();
         for (int i = 0; i < patientData.size(); i++) {
             if (patientData.get(i).getId().equals(id)) {
                 return patientData.get(i);
@@ -83,11 +101,11 @@ public class SamplePatientAction {
                 JSONArray department = (JSONArray) departments.get("department");
                 for (int j = 0; j < department.size(); j++) {
                     String depId = department.get(j).toString();
-                    tempInst.addDepartments(new Department(depId, this.depRep.findDepartment(depId).getName()));
+                    tempInst.addDepartments(new Department(depId, this.depRepo.findDepartment(depId).getName()));
                 }
             } else {
                 String depId = departments.get("department").toString();
-                tempInst.addDepartments(new Department(depId, this.depRep.findDepartment(depId).getName()));
+                tempInst.addDepartments(new Department(depId, this.depRepo.findDepartment(depId).getName()));
             }
 
             tempInstRep.saveInstitute(tempInst);
@@ -118,8 +136,8 @@ public class SamplePatientAction {
             tempPatient.setName(name);
             tempPatient.setEmail(email);
             tempPatient.setUsername(username);
-            tempPatient.setDepartment(this.depRep.findDepartment(department));
-            tempPatient.setInstitute(this.instRep.findInstitute(institute));
+            tempPatient.setDepartment(this.depRepo.findDepartment(department));
+            tempPatient.setInstitute(this.instRepo.findInstitute(institute));
             tempPatRep.savePatient(tempPatient);
         }
 
@@ -127,7 +145,7 @@ public class SamplePatientAction {
         return tempPatRep;
     }
 
-    public void loadFromJson(String fileName) {
+    public void parse(String fileName) {
         JSONParser parser = new JSONParser();
 
         try {
@@ -139,9 +157,9 @@ public class SamplePatientAction {
             Object obj = parser.parse(text);
 
             JSONObject jsonObject = (JSONObject) obj;
-            this.depRep = getDepartments(jsonObject);
-            this.instRep = getInstitute(jsonObject);
-            this.patRep = getPatients(jsonObject);
+            this.depRepo = getDepartments(jsonObject);
+            this.instRepo = getInstitute(jsonObject);
+            this.patRepo = getPatients(jsonObject);
 
         } catch (Exception e) {
             e.printStackTrace();
