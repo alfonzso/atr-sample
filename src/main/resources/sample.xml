@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sample>
+  <departments>
+    <department>
+      <id>000001</id>
+      <name>Szájsebészeti Osztály</name>
+    </department>
+    <department>
+      <id>000002</id>
+      <name>Szemészeti Osztály</name>
+    </department>
+    <department>
+      <id>000003</id>
+      <name>Fül-orr-gégészeti Osztály</name>
+    </department>
+  </departments>
+  <institutes>
+    <institute>
+      <id>12345</id>
+      <name>Uzsoki Utcai Kórház</name>
+      <departments>
+        <department>000001</department>
+        <department>000002</department>
+      </departments>
+    </institute>
+    <institute>
+      <id>54321</id>
+      <name>Szegedi Tudományegyetem Szent-Györgyi Albert Klinikai Központ</name>
+      <departments>
+        <department>000001</department>
+        <department>000002</department>
+        <department>000003</department>
+      </departments>
+    </institute>
+    <institute>
+      <id>32154</id>
+      <name>ARS MEDICA Lézerklinika Kft</name>
+      <departments>
+        <department>000001</department>
+      </departments>
+    </institute>
+  </institutes>
+  <patients>
+    <patient>
+      <id>USER1</id>
+      <name>Kalle Anka</name>
+      <email>donald@email.dt</email>
+      <username>donaldd</username>
+      <department>000001</department>
+      <institute>12345</institute>
+    </patient>
+    <patient>
+      <id>USER2</id>
+      <name>Joakim von Anka</name>
+      <email>scrooge@email.dt</email>
+      <username>onkelscrooge</username>
+      <department>000001</department>
+      <institute>12345</institute>
+    </patient>
+    <patient>
+      <id>USER3</id>
+      <name>Arne Anka</name>
+      <email>arne@email.com</email>
+      <username>arneanka</username>
+      <department>000003</department>
+      <institute>54321</institute>
+    </patient>
+    <patient>
+      <id>USER4</id>
+      <name>Teszt Anka</name>
+      <email>testank@email.hu</email>
+      <username>tesztanka</username>
+      <department>000002</department>
+      <institute>54321</institute>
+    </patient>
+    <patient>
+      <id>USER5</id>
+      <name>Ar Anka</name>
+      <email>testank@email.hu</email>
+      <username>aranka</username>
+      <department>000002</department>
+      <institute>12345</institute>
+    </patient>
+  </patients>
+</sample>

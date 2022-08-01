@@ -1,0 +1,94 @@
+{
+    "sample": {
+        "departments": {
+            "department": [
+                {
+                    "id": "000008",
+                    "name": "Bőrgyógyászat Osztály"
+                },
+                {
+                    "id": "000009",
+                    "name": "Csecsemő- és Gyermekosztály"
+                },
+                {
+                    "id": "000010",
+                    "name": "Kardiológiai Osztály"
+                }
+            ]
+        },
+        "institutes": {
+            "institute": [
+                {
+                    "id": "12345",
+                    "name": "Uzsoki Utcai Kórház",
+                    "departments": {
+                        "department": [
+                            "000008",
+                            "000009"
+                        ]
+                    }
+                },
+                {
+                    "id": "54322",
+                    "name": "Dr. László Elek Kórház és Rendelőintézet",
+                    "departments": {
+                        "department": [
+                            "000009"
+                        ]
+                    }
+                },
+                {
+                    "id": "32158",
+                    "name": "Szent Borbála Kórház Tatabánya",
+                    "departments": {
+                        "department": "000010"
+                    }
+                }
+            ]
+        },
+        "patients": {
+            "patient": [
+                {
+                    "id": "PATIENT8",
+                    "name": "Kiss Virág",
+                    "email": "kv@email.dt",
+                    "username": "kv",
+                    "department": "000008",
+                    "institute": "12345"
+                },
+                {
+                    "id": "PATIENT9",
+                    "name": "Kiss Gergő",
+                    "email": "kg@email.dt",
+                    "username": "kg",
+                    "department": "000010",
+                    "institute": "32158"
+                },
+                {
+                    "id": "PATIENT10",
+                    "name": "Arnene Anka",
+                    "email": "arne@email.com",
+                    "username": "arnerneanka",
+                    "department": "000009",
+                    "institute": "54322"
+                },
+                {
+                    "id": "PATIENT11",
+                    "name": "Teszt Éva",
+                    "email": "testeva@email.hu",
+                    "username": "teszteva",
+                    "department": "000009",
+                    "institute": "54322"
+                },
+                {
+                    "id": "PATIENT12",
+                    "name": "Arany Alma",
+                    "email": "aa@email.hu",
+                    "username": "aa",
+                    "department": "000008",
+                    "institute": "12345"
+                }
+            ]
+        }
+    }
+}
