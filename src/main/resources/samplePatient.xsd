@@ -1,92 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:lib="http://sample.dto.icellmobilsoft.hu/patient" targetNamespace="http://sample.dto.icellmobilsoft.hu/patient">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://sample.dto.icellmobilsoft.hu/patient" xmlns="http://sample.dto.icellmobilsoft.hu/patient" elementFormDefault='qualified'>
+    <xsd:complexType name="departmentType">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="name" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
 
-    <xs:complexType name="departmentType">
-        <xs:sequence>
-            <xs:element name="id">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1" />
-                        <xs:maxLength value="32" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="name" type="xs:string" />
-        </xs:sequence>
-    </xs:complexType>
+    <xsd:complexType name="instituteType">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="name" type="xsd:string" />
+            <xsd:element name="departments">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="department" maxOccurs="unbounded" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
 
-    <xs:complexType name="instituteType">
-        <xs:sequence>
-            <xs:element name="id" type="xs:string" minOccurs="1" />
+    <xsd:complexType name="patientsType">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="name" type="xsd:string" />
+            <xsd:element name="email" type="xsd:string" />
+            <xsd:element name="username" type="xsd:string" />
+            <xsd:element name="department" type="xsd:string" />
+            <xsd:element name="institute" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
 
-            <xs:element name="name" minOccurs="1">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:maxLength value="255" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
+    <xsd:complexType name="departmentListType">
+        <xsd:sequence>
+            <xsd:element name="department" type="departmentType" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
 
-            <xs:element name="departments" minOccurs="0">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="department" maxOccurs="unbounded" type="xs:string" />
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
+    <xsd:complexType name="instituteListType">
+        <xsd:sequence>
+            <xsd:element name="institute" type="instituteType" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
 
-        </xs:sequence>
-    </xs:complexType>
+    <xsd:complexType name="patientsListType">
+        <xsd:sequence>
+            <xsd:element name="patient" type="patientsType" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
 
-    <xs:complexType name="patientsType">
-        <xs:sequence>
-            <xs:element name="id" minOccurs="1">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1" />
-                        <xs:maxLength value="32" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="name" type="xs:string" minOccurs="0" />
-            <xs:element name="email" minOccurs="1">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:pattern value="[^@]+@[^\.]+\..+" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="username" type="xs:string" minOccurs="1" />
-            <xs:element name="department" type="xs:string" minOccurs="1" />
-            <xs:element name="institute" type="xs:string" minOccurs="1" />
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="departmentListType">
-        <xs:sequence>
-            <xs:element name="department" type="lib:departmentType" maxOccurs="unbounded" />
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="instituteListType">
-        <xs:sequence>
-            <xs:element name="institute" type="lib:instituteType" maxOccurs="unbounded" />
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="patientsListType">
-        <xs:sequence>
-            <xs:element name="patient" type="lib:patientsType" maxOccurs="unbounded" />
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:element name="sample">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="departments" type="lib:departmentListType" />
-                <xs:element name="institutes" type="lib:instituteListType" />
-                <xs:element name="patients" type="lib:patientsListType" />
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-</xs:schema>
+    <xsd:element name="sample">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="departments" type="departmentListType" />
+                <xsd:element name="institutes" type="instituteListType" />
+                <xsd:element name="patients" type="patientsListType" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
