@@ -14,10 +14,10 @@ public class SamplePatientAction extends RequestDataImpl {
     private PatientRepository patRep;
     private InstituteRepository instRep;
 
-    private LoadDataImpl lDI;
+    private LoadDataImpl loadData;
 
     public void loadFromXml(String xml) {
-        parseXml oParseXml = lDI.loadFromXml(xml);
+        parseXml oParseXml = loadData.loadFromXml(xml);
 
         depRep = oParseXml.getDepRepo();
         patRep = oParseXml.getPatRepo();
@@ -25,7 +25,7 @@ public class SamplePatientAction extends RequestDataImpl {
     }
 
     public void loadFromJson(String json) {
-        parseJson oParseJson = lDI.loadFromJson(json);
+        parseJson oParseJson = loadData.loadFromJson(json);
 
         depRep = oParseJson.getDepRepo();
         patRep = oParseJson.getPatRepo();

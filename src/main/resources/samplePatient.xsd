@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:lib="http://sample.dto.icellmobilsoft.hu/patient" targetNamespace="http://sample.dto.icellmobilsoft.hu/patient">
+
+    <xs:complexType name="departmentType">
+        <xs:sequence>
+            <xs:element name="id">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="32" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="name" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="instituteType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="1" />
+
+            <xs:element name="name" minOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="departments" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="department" maxOccurs="unbounded" type="xs:string" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="patientsType">
+        <xs:sequence>
+            <xs:element name="id" minOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="32" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="name" type="xs:string" minOccurs="0" />
+            <xs:element name="email" minOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[^@]+@[^\.]+\..+" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="username" type="xs:string" minOccurs="1" />
+            <xs:element name="department" type="xs:string" minOccurs="1" />
+            <xs:element name="institute" type="xs:string" minOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="departmentListType">
+        <xs:sequence>
+            <xs:element name="department" type="lib:departmentType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="instituteListType">
+        <xs:sequence>
+            <xs:element name="institute" type="lib:instituteType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="patientsListType">
+        <xs:sequence>
+            <xs:element name="patient" type="lib:patientsType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="sample">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="departments" type="lib:departmentListType" />
+                <xs:element name="institutes" type="lib:instituteListType" />
+                <xs:element name="patients" type="lib:patientsListType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

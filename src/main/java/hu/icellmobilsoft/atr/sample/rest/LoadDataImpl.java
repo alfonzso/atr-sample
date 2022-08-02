@@ -1,11 +1,17 @@
 package hu.icellmobilsoft.atr.sample.rest;
 
+import javax.xml.stream.XMLStreamException;
+
 public class LoadDataImpl implements ILoadData {
 
     @Override
     public parseXml loadFromXml(String xml) {
         parseXml oParseXml = new parseXml();
-        oParseXml.parse(xml);
+        try {
+            oParseXml.readSample(oParseXml.parse(xml));
+        } catch (XMLStreamException e) {
+            e.printStackTrace();
+        }
 
         return oParseXml;
     }
