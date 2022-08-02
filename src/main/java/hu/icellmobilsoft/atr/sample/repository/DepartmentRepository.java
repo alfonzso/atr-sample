@@ -1,6 +1,7 @@
 package hu.icellmobilsoft.atr.sample.repository;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import hu.icellmobilsoft.atr.sample.model.Department;
 
@@ -24,12 +25,8 @@ public class DepartmentRepository {
     }
 
     public Department findDepartment(String id) {
-        for (int index = 0; index < departments.size(); index++) {
-            if (departments.get(index).getId().equals(id)) {
-                return departments.get(index);
-            }
-        }
-        return null;
+        Stream<Department> findDepId = departments.stream().filter(x -> x.getId().equals(id));
+        return findDepId.findFirst().orElse(null);
     }
 
     public ArrayList<Department> getAllDepartment() {
@@ -38,9 +35,10 @@ public class DepartmentRepository {
 
     @Override
     public String toString() {
-        for (int i = 0; i < departments.size(); i++) {
-            System.out.println(departments.get(i).getId() + "--> " + departments.get(i).getName());
-        }
+      departments.stream().forEach(x -> {
+            System.out.println(x.getId());
+            System.out.println(x.getName());
+        });
         return super.toString();
     }
 

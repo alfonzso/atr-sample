@@ -1,6 +1,7 @@
 package hu.icellmobilsoft.atr.sample.rest;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import hu.icellmobilsoft.atr.sample.model.Patient;
 import hu.icellmobilsoft.atr.sample.repository.PatientRepository;
@@ -11,14 +12,8 @@ public class RequestDataImpl implements IRequestData {
 
     @Override
     public Patient getPatientData(String id) {
-
-        ArrayList<Patient> patientData = patRep.getAllPatient();
-        for (int i = 0; i < patientData.size(); i++) {
-            if (patientData.get(i).getId().equals(id)) {
-                return patientData.get(i);
-            }
-        }
-        return null;
+        Stream<Patient> patientStream = patRep.getAllPatient().stream().filter(predicate -> predicate.getId().equals(id));
+        return patientStream.findFirst().orElse(null);
     }
 
     @Override
