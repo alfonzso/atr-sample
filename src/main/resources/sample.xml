@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml-model href="sample4.xsd"?>
+<?xml-model href="samplePatient.xsd"?>
 <pat:sample xmlns:pat="http://sample.dto.icellmobilsoft.hu/patient">
   <departments>
     <department>
