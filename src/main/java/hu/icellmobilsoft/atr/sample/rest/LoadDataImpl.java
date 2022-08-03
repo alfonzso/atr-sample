@@ -1,6 +1,11 @@
 package hu.icellmobilsoft.atr.sample.rest;
 
+import java.io.IOException;
+
 import javax.xml.stream.XMLStreamException;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
 
 import hu.icellmobilsoft.atr.sample.util.XSDValidator;
 
@@ -25,11 +30,18 @@ public class LoadDataImpl implements ILoadData {
 
     @Override
     public parseJson loadFromJson(String json) {
-        parseJson oParseJson = new parseJson();
-        oParseJson.parse(json);
+        parseJson jParser = new parseJson();
+        JsonParser parser;
+        try {
+            parser = jParser.parse("example.json");
+            jParser.readSample(parser);
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        return oParseJson;
+        return jParser;
 
     }
-
 }
