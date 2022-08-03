@@ -91,47 +91,59 @@ public class parseJson {
             if ("departments".equals(fieldname)) {
                 jParser.nextToken();
                 System.out.println(jParser.getValueAsString());
-                readDepartments(jParser);
-                // jParser.getIntValue();
+                depRepo = readDepartments(jParser);
                 // return;
             }
             if ("institutes".equals(fieldname)) {
                 jParser.nextToken();
                 System.out.println(jParser.getValueAsString());
-                readInstitute(jParser);
-                // jParser.getIntValue();
-                return;
+                instRepo = readInstitute(jParser);
+                // return;
+            }
+            if ("patients".equals(fieldname)) {
+                jParser.nextToken();
+                System.out.println(jParser.getValueAsString());
+                // readInstitute(jParser);
+                readPatients(jParser);
+                // return;
             }
 
         }
         jParser.close();
-        // java.util.EnumSet.of(JsonToken.END_ARRAY,
-        // JsonToken.END_OBJECT).contains(jParser.nextToken());
     }
 
-    void readDepartments(JsonParser jParser) throws IOException {
+    DepartmentRepository readDepartments(JsonParser jParser) throws IOException {
+        DepartmentRepository tempDepRep = new DepartmentRepository();
+
         while (jParser.nextToken() != JsonToken.END_OBJECT) {
             String fieldname = jParser.getCurrentName();
 
             if ("department".equals(fieldname)) {
                 jParser.nextToken();
                 System.out.println(jParser.getValueAsString());
+                JsonToken a;
                 // readDepartmentIDName(jParser);
-                while (jParser.nextToken() != JsonToken.END_ARRAY) {
+                String id = "", name = "";
+                while ((a = jParser.nextToken()) != JsonToken.END_ARRAY) {
                     // addresses.add(jParser.getText());
                     switch (jParser.getText()) {
                         case "id":
                             jParser.nextToken();
                             System.out.println("-id--" + jParser.getText());
-
+                            id = jParser.getText();
                             break;
                         case "name":
                             jParser.nextToken();
                             System.out.println("-name--" + jParser.getText());
 
+                            name = jParser.getText();
                             break;
 
                         default:
+                            System.out.println("-break--" + jParser.getText() + "-----" + a);
+                            if (a == JsonToken.END_OBJECT) {
+                                tempDepRep.saveDepartment(new Department(id, name));
+                            }
                             break;
                     }
                 }
@@ -141,95 +153,108 @@ public class parseJson {
 
         }
         // jParser.close();
+        return tempDepRep;
     }
 
-    void readInstitute(JsonParser jParser) throws IOException {
+    InstituteRepository readInstitute(JsonParser jParser) throws IOException {
+        InstituteRepository tempInstRep = new InstituteRepository();
         while (jParser.nextToken() != JsonToken.END_OBJECT) {
             String fieldname = jParser.getCurrentName();
 
             if ("institute".equals(fieldname)) {
                 System.out.println("xxxxxxxxxxxx " + jParser.getValueAsString());
                 JsonToken a;
+                String id = "", name = "", department = "";
+                Institute tempInst = new Institute();
                 while ((a = jParser.nextToken()) != JsonToken.END_ARRAY) {
                     if ("id".equals(jParser.getValueAsString())) {
                         jParser.nextToken();
-                        System.out.println("====InstId====== " + jParser.getValueAsString() + " >< ");
-
+                        tempInst = new Institute();
+                        System.out.println("-id--" + jParser.getText());
+                        id = jParser.getText();
+                        tempInst.setId(id);
+                        // System.out.println("====InstId====== " + jParser.getValueAsString() + " ><
+                        // ");
                     }
                     if ("name".equals(jParser.getValueAsString())) {
                         jParser.nextToken();
-                        System.out.println("====NameId====== " + jParser.getValueAsString() + " >< ");
-
+                        System.out.println("-name--" + jParser.getText());
+                        name = jParser.getText();
+                        tempInst.setName(name);
+                        // System.out.println("====NameId====== " + jParser.getValueAsString() + " ><
+                        // ");
                     }
                     if ("departments".equals(jParser.getValueAsString())) {
-                        // jParser.nextToken();
-                        // System.out.println("=====kek===== " + jParser.getValueAsString() + " >< " +
-                        // a);
-                        // if (EnumSet<JsonToken>.of().contains(currentMood)){}
-                        // jParser.get
                         a = jParser.nextToken();
                         while (a != JsonToken.END_ARRAY && a != JsonToken.END_OBJECT) {
-                            // if (!"null".equals(jParser.getValueAsString())) {
                             String depId = jParser.getValueAsString();
                             if (depId != null && depId != "department") {
+                                System.out.println("-id--" + jParser.getText());
+                                department = jParser.getText();
+                                tempInst.addDepartments(depRepo.findDepartment(department));
                                 System.out.println("    ======DepId==== " + jParser.getValueAsString() + " >< " + a);
-
                             }
-                            // System.out.println("======aaaaaaa==== " + jParser.getValueAsString() + " >< "
-                            // + a);
-
-                            // System.out.println("====hdkkskssk====== " + jParser.getValueAsString() + " ><
-                            // ");
-
-                            // System.out.println("====ffff====== " + jParser.getValueAsString() + " >< " +
-                            // a);
                             a = jParser.nextToken();
                         }
-                        // while (java.util.EnumSet.of(JsonToken.END_ARRAY, JsonToken.END_OBJECT)
-                        // .contains(jParser.nextToken())) {
-                        // System.out.println("====ffff====== " + jParser.getValueAsString() + " >< " +
-                        // a);
-                        // }
-                        // jParser.nextToken();
-                        // System.out.println("=====sasa===== " + jParser.getValueAsString() + " >< " +
-                        // a);
-
+                        tempInstRep.saveInstitute(tempInst);
                     }
-
                 }
-                // System.out.println("=====end===== " + jParser.getValueAsString() + " >< " +
-                // a);
+                // return;
+            }
+
+        }
+        return tempInstRep;
+    }
+
+    void readPatients(JsonParser jParser) throws IOException {
+        while (jParser.nextToken() != JsonToken.END_OBJECT) {
+            String fieldname = jParser.getCurrentName();
+
+            if ("patient".equals(fieldname)) {
+                jParser.nextToken();
+                System.out.println(jParser.getValueAsString());
                 // readDepartmentIDName(jParser);
-                // while (jParser.nextToken() != JsonToken.END_ARRAY) {
-                // // addresses.add(jParser.getText());
-                // // System.out.println(jParser.getText());
-                // switch (jParser.getText()) {
-                // case "id":
-                // jParser.nextToken();
-                // System.out.println("-iooood--" + jParser.getText());
+                while (jParser.nextToken() != JsonToken.END_ARRAY) {
+                    // addresses.add(jParser.getText());
+                    switch (jParser.getText()) {
+                        case "id":
+                            jParser.nextToken();
+                            System.out.println();
+                            System.out.println("-id--" + jParser.getText());
 
-                // break;
-                // case "name":
-                // jParser.nextToken();
-                // System.out.println("-name--" + jParser.getText());
+                            break;
+                        case "name":
+                            jParser.nextToken();
+                            System.out.println("-name--" + jParser.getText());
 
-                // break;
+                            break;
+                        case "email":
+                            jParser.nextToken();
+                            System.out.println("-email--" + jParser.getText());
 
-                // case "departments":
-                // jParser.nextToken();
-                // JsonToken a;
-                // while ( (a = jParser.nextToken()) != JsonToken.END_ARRAY) {
-                // System.out.println("-depdep--" + jParser.getText() + " aa: " + a);
-                // }
-                // // System.out.println("-depdep--" + jParser.getText() + " aa: " + a);
-                // break;
+                            break;
+                        case "username":
+                            jParser.nextToken();
+                            System.out.println("-username--" + jParser.getText());
 
-                // default:
-                // break;
-                // }
-                // }
+                            break;
+                        case "department":
+                            jParser.nextToken();
+                            System.out.println("-department--" + jParser.getText());
+
+                            break;
+                        case "institute":
+                            jParser.nextToken();
+                            System.out.println("-institute--" + jParser.getText());
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
                 // jParser.getIntValue();
-                return;
+                // return;
             }
 
         }
