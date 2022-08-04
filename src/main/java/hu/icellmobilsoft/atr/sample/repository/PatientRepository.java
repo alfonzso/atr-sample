@@ -42,6 +42,7 @@ public class PatientRepository {
             System.out.println(x.getUsername());
             System.out.println(x.getDepartment().getName());
             System.out.println(x.getInstitute().getName());
+            System.out.println();
         });
 
         return super.toString();

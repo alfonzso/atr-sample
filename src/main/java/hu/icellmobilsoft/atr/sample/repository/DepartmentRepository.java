@@ -35,9 +35,10 @@ public class DepartmentRepository {
 
     @Override
     public String toString() {
-      departments.stream().forEach(x -> {
-            System.out.println(x.getId());
-            System.out.println(x.getName());
+        departments.stream().forEach(x -> {
+            System.out.printf("[ %s ] => \n id: %s \n name: %s\n", this.getClass().getSimpleName().toString(),
+                    x.getId(),
+                    x.getName());
         });
         return super.toString();
     }

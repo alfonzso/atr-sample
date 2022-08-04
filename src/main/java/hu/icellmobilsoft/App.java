@@ -25,29 +25,29 @@ public class App {
     public static void patientXmlTest(parseXml opx) {
         System.out.println("######################## allDepartment");
         opx.getDepRepo().toString();
-        System.out.println("######################## allDepartment End ");
+        System.out.println("######################## allDepartment End \n");
 
         System.out.println("######################## allInstitute");
         opx.getInstRepo().toString();
-        System.out.println("######################## allInstitute End ");
+        System.out.println("######################## allInstitute End \n");
 
         System.out.println("######################## allPatient");
         opx.getPatRepo().toString();
-        System.out.println("######################## allPatient End ");
+        System.out.println("######################## allPatient End \n");
     }
 
     public static void patientJsonTest(SamplePatientAction spa) {
         System.out.println("######################## allDepartment");
         spa.getDepRep().toString();
-        System.out.println("######################## allDepartment End ");
+        System.out.println("######################## allDepartment End \n");
 
         System.out.println("######################## allInstitute");
         spa.getInstRep().toString();
-        System.out.println("######################## allInstitute End ");
+        System.out.println("######################## allInstitute End \n");
 
         System.out.println("######################## allPatient");
         spa.getPatRep().toString();
-        System.out.println("######################## allPatient End ");
+        System.out.println("######################## allPatient End \n");
     }
 
 }

@@ -21,7 +21,7 @@ public class InstituteRepository {
     }
 
     public Institute findInstitute(String id) {
-       Stream<Institute> findInstId = institutes.stream().filter(x -> x.getId().equals(id));
+        Stream<Institute> findInstId = institutes.stream().filter(x -> x.getId().equals(id));
         return findInstId.findFirst().orElse(null);
     }
 
@@ -32,9 +32,10 @@ public class InstituteRepository {
     @Override
     public String toString() {
         institutes.stream().forEach(x -> {
-            System.out.println(x.getId());
-            System.out.println(x.getName());
+            System.out.printf("[ %s ] => id: %s name: %s\n", this.getClass().getSimpleName().toString(), x.getId(),
+                    x.getName());
             x.getDepartments().toString();
+            System.out.println();
         });
         return super.toString();
     }
