@@ -17,6 +17,18 @@ public class SamplePatientAction extends RequestDataImpl {
 
     private LoadDataImpl loadData;
 
+    public DepartmentRepository getDepRep() {
+        return depRep;
+    }
+
+    public PatientRepository getPatRep() {
+        return patRep;
+    }
+
+    public InstituteRepository getInstRep() {
+        return instRep;
+    }
+
     public SamplePatientAction() {
         loadData = new LoadDataImpl();
     }

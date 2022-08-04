@@ -12,12 +12,12 @@ import hu.icellmobilsoft.atr.sample.util.XSDValidator;
 public class LoadDataImpl implements ILoadData {
 
     @Override
-    public parseXml loadFromXml(String xml) {
+    public parseXml loadFromXml(String xmlFileName) {
         parseXml oParseXml = new parseXml();
         try {
             XSDValidator validator = new XSDValidator();
-            if (validator.Validate(xml, "samplePatient.xsd")) {
-                oParseXml.readSample(oParseXml.parse(xml));
+            if (validator.Validate(xmlFileName, "samplePatient.xsd")) {
+                oParseXml.readSample(oParseXml.parse(xmlFileName));
             } else {
                 throw new Error("invalid xml");
             }
@@ -29,11 +29,11 @@ public class LoadDataImpl implements ILoadData {
     }
 
     @Override
-    public parseJson loadFromJson(String json) {
+    public parseJson loadFromJson(String jsonFileName) {
         parseJson jParser = new parseJson();
         JsonParser parser;
         try {
-            parser = jParser.parse("example.json");
+            parser = jParser.parse(jsonFileName);
             jParser.readSample(parser);
         } catch (JsonParseException e) {
             e.printStackTrace();

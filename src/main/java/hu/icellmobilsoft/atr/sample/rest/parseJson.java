@@ -46,15 +46,6 @@ public class parseJson {
         return jParser;
     }
 
-    // public static void main(String[] args) throws JsonParseException, IOException {
-    //     parseJson jParser = new parseJson();
-    //     JsonParser parser = jParser.parse("example.json");
-    //     jParser.readSample(parser);
-    //     if (jParser.patRepo.getAllPatient().size() != 5) {
-    //         throw new Error("refactor failed");
-    //     }
-    // }
-
     void readSample(JsonParser jParser) throws IOException {
         while (jParser.nextToken() != JsonToken.END_OBJECT) {
             String fieldname = jParser.getCurrentName();
@@ -77,6 +68,7 @@ public class parseJson {
 
     DepartmentRepository readDepartments(JsonParser jParser) throws IOException {
         DepartmentRepository tempDepRep = new DepartmentRepository();
+        Department tempDep = null;
 
         while (jParser.nextToken() != JsonToken.END_OBJECT) {
             String fieldname = jParser.getCurrentName();
@@ -84,23 +76,23 @@ public class parseJson {
             if ("department".equals(fieldname)) {
                 jParser.nextToken();
                 JsonToken nextToken;
-                String id = "", name = "";
 
                 while ((nextToken = jParser.nextToken()) != JsonToken.END_ARRAY) {
                     switch (jParser.getText()) {
                         case "id":
+                            tempDep = new Department();
                             jParser.nextToken();
-                            id = jParser.getText();
+                            tempDep.setId(jParser.getValueAsString());
 
                             break;
                         case "name":
                             jParser.nextToken();
-                            name = jParser.getText();
+                            tempDep.setName(jParser.getValueAsString());
 
                             break;
                         default:
                             if (nextToken == JsonToken.END_OBJECT) {
-                                tempDepRep.saveDepartment(new Department(id, name));
+                                tempDepRep.saveDepartment(tempDep);
                             }
                             break;
                     }
@@ -112,12 +104,13 @@ public class parseJson {
 
     InstituteRepository readInstitute(JsonParser jParser) throws IOException {
         InstituteRepository tempInstRep = new InstituteRepository();
+        Institute tempInst = null;
+
         while (jParser.nextToken() != JsonToken.END_OBJECT) {
             String fieldname = jParser.getCurrentName();
 
             if ("institute".equals(fieldname)) {
                 JsonToken nextToken;
-                Institute tempInst = new Institute();
 
                 while ((nextToken = jParser.nextToken()) != JsonToken.END_ARRAY) {
                     if ("id".equals(jParser.getValueAsString())) {
@@ -148,6 +141,7 @@ public class parseJson {
 
     PatientRepository readPatients(JsonParser jParser) throws IOException {
         PatientRepository tempPatRep = new PatientRepository();
+        Patient tempPat = null;
 
         while (jParser.nextToken() != JsonToken.END_OBJECT) {
             String fieldname = jParser.getCurrentName();
@@ -155,39 +149,38 @@ public class parseJson {
             if ("patient".equals(fieldname)) {
                 jParser.nextToken();
 
-                Patient tempPat = new Patient();
                 while (jParser.nextToken() != JsonToken.END_ARRAY) {
 
                     switch (jParser.getText()) {
                         case "id":
                             jParser.nextToken();
                             tempPat = new Patient();
-                            tempPat.setId(jParser.getText());
+                            tempPat.setId(jParser.getValueAsString());
 
                             break;
                         case "name":
                             jParser.nextToken();
-                            tempPat.setName(jParser.getText());
+                            tempPat.setName(jParser.getValueAsString());
 
                             break;
                         case "email":
                             jParser.nextToken();
-                            tempPat.setEmail(jParser.getText());
+                            tempPat.setEmail(jParser.getValueAsString());
 
                             break;
                         case "username":
                             jParser.nextToken();
-                            tempPat.setUsername(jParser.getText());
+                            tempPat.setUsername(jParser.getValueAsString());
 
                             break;
                         case "department":
                             jParser.nextToken();
-                            tempPat.setDepartment(depRepo.findDepartment(jParser.getText()));
+                            tempPat.setDepartment(depRepo.findDepartment(jParser.getValueAsString()));
 
                             break;
                         case "institute":
                             jParser.nextToken();
-                            tempPat.setInstitute(instRepo.findInstitute(jParser.getText()));
+                            tempPat.setInstitute(instRepo.findInstitute(jParser.getValueAsString()));
                             tempPatRep.savePatient(tempPat);
 
                             break;
