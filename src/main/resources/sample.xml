@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<sample>
+<?xml-model href="samplePatient.xsd"?>
+<pat:sample xmlns="http://sample.dto.icellmobilsoft.hu/patient" xmlns:pat="http://sample.dto.icellmobilsoft.hu/patient">
   <departments>
     <department>
-      <id>000001</id>
+      <id>000001</id> 
       <name>Szájsebészeti Osztály</name>
     </department>
     <department>
@@ -82,4 +83,4 @@
       <institute>12345</institute>
     </patient>
   </patients>
-</sample>
+</pat:sample>

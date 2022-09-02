@@ -1,7 +1,5 @@
 package hu.icellmobilsoft.atr.sample.model;
 
-import java.util.ArrayList;
-
 import hu.icellmobilsoft.atr.sample.repository.DepartmentRepository;
 
 public class Institute {

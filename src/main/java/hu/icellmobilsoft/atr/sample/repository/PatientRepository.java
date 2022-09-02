@@ -30,29 +30,21 @@ public class PatientRepository {
     }
 
     public Patient findPatient(String id) {
-        for (int index = 0; index < patients.size(); index++) {
-            if (patients.get(index).getId().equals(id)) {
-                return patients.get(index);
-            }
-        }
-        return null;
+        return patients.stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
     }
 
     @Override
     public String toString() {
-        for (int i = 0; i < patients.size(); i++) {
-            System.out.println(patients.get(i).getId());
-            System.out.println(patients.get(i).getName());
-            System.out.println(patients.get(i).getUsername());
-            System.out.println(patients.get(i).getEmail());
-            System.out.println(
-                patients.get(i).getDepartment().getName().toString()
-            );
-            System.out.println(
-                patients.get(i).getInstitute().getName().toString()
-            );
+        patients.stream().forEach(x -> {
+            System.out.println(x.getId());
+            System.out.println(x.getName());
+            System.out.println(x.getEmail());
+            System.out.println(x.getUsername());
+            System.out.println(x.getDepartment().getName());
+            System.out.println(x.getInstitute().getName());
+            System.out.println();
+        });
 
-        }
         return super.toString();
     }
 

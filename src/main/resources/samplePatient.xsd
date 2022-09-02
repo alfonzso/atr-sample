@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://sample.dto.icellmobilsoft.hu/patient" xmlns="http://sample.dto.icellmobilsoft.hu/patient" elementFormDefault='qualified'>
+    <xsd:complexType name="departmentType">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="name" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="instituteType">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="name" type="xsd:string" />
+            <xsd:element name="departments">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="department" maxOccurs="unbounded" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="patientsType">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="name" type="xsd:string" />
+            <xsd:element name="email" type="xsd:string" />
+            <xsd:element name="username" type="xsd:string" />
+            <xsd:element name="department" type="xsd:string" />
+            <xsd:element name="institute" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="departmentListType">
+        <xsd:sequence>
+            <xsd:element name="department" type="departmentType" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="instituteListType">
+        <xsd:sequence>
+            <xsd:element name="institute" type="instituteType" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="patientsListType">
+        <xsd:sequence>
+            <xsd:element name="patient" type="patientsType" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="sample">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="departments" type="departmentListType" />
+                <xsd:element name="institutes" type="instituteListType" />
+                <xsd:element name="patients" type="patientsListType" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
