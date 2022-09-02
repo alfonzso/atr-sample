@@ -1,9 +1,11 @@
 package hu.icellmobilsoft.atr.sample.rest;
 
-public interface ILoadData {
-    ParseXml loadFromXml(String xml);
+import hu.icellmobilsoft.HealthCareContainer;
 
-    ParseJson loadFromJson(String json);
+public interface ILoadData {
+    HealthCareContainer loadFromXml(String xml);
+
+    HealthCareContainer loadFromJson(String json);
 
 
 }
