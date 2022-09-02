@@ -15,7 +15,7 @@ import hu.icellmobilsoft.atr.sample.repository.DepartmentRepository;
 import hu.icellmobilsoft.atr.sample.repository.InstituteRepository;
 import hu.icellmobilsoft.atr.sample.repository.PatientRepository;
 
-public class parseJson {
+public class ParseJson {
 
     private DepartmentRepository depRepo;
     private PatientRepository patRepo;
@@ -33,7 +33,7 @@ public class parseJson {
         return depRepo;
     }
 
-    public parseJson() {
+    public ParseJson() {
 
     }
 

@@ -4,16 +4,22 @@ import java.io.IOException;
 
 import javax.xml.stream.XMLStreamException;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 
+import hu.icellmobilsoft.atr.sample.util.SimpleTicketConstans;
 import hu.icellmobilsoft.atr.sample.util.XSDValidator;
 
 public class LoadDataImpl implements ILoadData {
 
     @Override
-    public parseXml loadFromXml(String xmlFileName) {
-        parseXml oParseXml = new parseXml();
+    public ParseXml loadFromXml(String xmlFileName) {
+        if(StringUtils.isBlank(xmlFileName)){
+            throw new IllegalArgumentException(SimpleTicketConstans.PARAMETER_CANNOT_NULL_MSG);
+        }
+        ParseXml oParseXml = new ParseXml();
         try {
             XSDValidator validator = new XSDValidator();
             if (validator.Validate(xmlFileName, "samplePatient.xsd")) {
@@ -29,8 +35,8 @@ public class LoadDataImpl implements ILoadData {
     }
 
     @Override
-    public parseJson loadFromJson(String jsonFileName) {
-        parseJson jParser = new parseJson();
+    public ParseJson loadFromJson(String jsonFileName) {
+        ParseJson jParser = new ParseJson();
         JsonParser parser;
         try {
             parser = jParser.parse(jsonFileName);

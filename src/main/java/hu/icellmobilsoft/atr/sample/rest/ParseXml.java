@@ -15,7 +15,7 @@ import hu.icellmobilsoft.atr.sample.repository.DepartmentRepository;
 import hu.icellmobilsoft.atr.sample.repository.InstituteRepository;
 import hu.icellmobilsoft.atr.sample.repository.PatientRepository;
 
-public class parseXml {
+public class ParseXml {
     private DepartmentRepository depRepo;
     private PatientRepository patRepo;
     private InstituteRepository instRepo;
@@ -32,7 +32,7 @@ public class parseXml {
         return depRepo;
     }
 
-    public parseXml() {
+    public ParseXml() {
         this.depRepo = new DepartmentRepository();
         this.patRepo = new PatientRepository();
         this.instRepo = new InstituteRepository();

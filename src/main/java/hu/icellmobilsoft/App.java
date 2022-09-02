@@ -2,11 +2,14 @@ package hu.icellmobilsoft;
 
 import hu.icellmobilsoft.atr.sample.action.SamplePatientAction;
 import hu.icellmobilsoft.atr.sample.model.Patient;
-import hu.icellmobilsoft.atr.sample.rest.parseJson;
-import hu.icellmobilsoft.atr.sample.rest.parseXml;
+import hu.icellmobilsoft.atr.sample.rest.ParseXml;
 
 /**
  * Hello world!
+ *
+ */
+
+/**
  *
  */
 public class App {
@@ -22,7 +25,7 @@ public class App {
         osp.deletePatient("PATIENT8");
     }
 
-    public static void patientXmlTest(parseXml opx) {
+    public static void patientXmlTest(ParseXml opx) {
         System.out.println("######################## allDepartment");
         opx.getDepRepo().toString();
         System.out.println("######################## allDepartment End \n");
